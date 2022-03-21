@@ -1,6 +1,6 @@
 const io = require("socket.io")(process.env.PORT || 8900, {
   cors: {
-    origin: "https://cors-proxy420.herokuapp.com/https://brave-spence-43c8e2.netlify.app",
+    origin: "https://brave-spence-43c8e2.netlify.app",
   },
 });
 
