@@ -1,6 +1,6 @@
 const io = require("socket.io")(process.env.PORT || 8900, {
   cors: {
-    origin: "https://brave-spence-43c8e2.netlify.app",
+    origin: "https://cranky-pasteur-bf58f2.netlify.app",
   },
 });
 
