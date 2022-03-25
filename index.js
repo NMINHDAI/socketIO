@@ -1,6 +1,6 @@
 const io = require("socket.io")(process.env.PORT || 8900, {
   cors: {
-    origin: "https://competent-bohr-b95daf.netlify.app",
+    origin: "https://cors-proxy420.herokuapp.com/https://competent-bohr-b95daf.netlify.app",
   },
 });
 
