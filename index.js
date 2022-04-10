@@ -9,12 +9,10 @@ let users = [];
 const addUser = (userId, socketId) => {
   !users.some((user) => user.userId === userId) &&
     users.push({ userId, socketId });
-  console.log('adddusser     users: ', users);
 };
 
 const removeUser = (socketId) => {
   users = users.filter((user) => user.socketId !== socketId);
-  console.log('removeusser     users: ', users);
 };
 
 const removeUserbyId = (userId) => {
@@ -36,9 +34,7 @@ io.on("connection", (socket) => {
 
   //send and get message
   socket.on("sendMessage", ({ senderId, receiverId, text }) => {
-    console.log('print received id', receiverId);
     const user = getUser(receiverId);
-    console.log('print user ', user);
     if (user) {
       io.to(user.socketId).emit("getMessage", {
         senderId,
