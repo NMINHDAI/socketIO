@@ -1,6 +1,6 @@
 const io = require("socket.io")(process.env.PORT || 8900, {
   cors: {
-    origin: "https://mybestportfolio.herokuapp.com",
+    origin: "https://mybestportfolio.herokuapp.com/dashboard",
   },
 });
  
@@ -24,6 +24,8 @@ const getUser = (userId) => {
 };
 
 io.on("connection", (socket) => {
+  console.log('user', users);
+
   //take userId and socketId from user
   socket.on("addUser", (userId) => {
     addUser(userId, socket.id);
