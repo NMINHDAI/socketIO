@@ -44,7 +44,7 @@ io.on("connection", (socket) => {
     io.emit("getUsers", users);
   });
 
-  //when disconnect
+  //when disconnect 
   socket.on("disconnect", () => {
     removeUser(socket.id);
     io.emit("getUsers", users);
