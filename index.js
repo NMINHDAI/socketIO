@@ -39,10 +39,12 @@ io.on("connection", (socket) => {
     console.log('print received id', receiverId);
     const user = getUser(receiverId);
     console.log('print user ', user);
-    io.to(user.socketId).emit("getMessage", {
-      senderId,
-      text,
-    });
+    if (user) {
+      io.to(user.socketId).emit("getMessage", {
+        senderId,
+        text,
+      });
+    }
   });
 
   socket.on("removeUser", (userId) => {
