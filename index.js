@@ -1,6 +1,6 @@
 const io = require("socket.io")(process.env.PORT || 8900, {
   cors: {
-    origin: "https://competent-bohr-b95daf.netlify.app",
+    origin: "https://mybestportfolio.herokuapp.com",
   },
 });
  
@@ -15,14 +15,15 @@ const removeUser = (socketId) => {
   users = users.filter((user) => user.socketId !== socketId);
 };
 
+const removeUserbyId = (userId) => {
+  users = users.filter((user) => user.userId !== userId);
+};
+
 const getUser = (userId) => {
   return users.find((user) => user.userId === userId);
 };
 
 io.on("connection", (socket) => {
-  //when ceonnect
-  console.log("a user connected.");
-
   //take userId and socketId from user
   socket.on("addUser", (userId) => {
     addUser(userId, socket.id);
@@ -38,9 +39,13 @@ io.on("connection", (socket) => {
     });
   });
 
+  socket.on("removeUser", (userId) => {
+    removeUserbyId(userId);
+    io.emit("getUsers", users);
+  });
+
   //when disconnect
   socket.on("disconnect", () => {
-    console.log("a user disconnected!");
     removeUser(socket.id);
     io.emit("getUsers", users);
   });
